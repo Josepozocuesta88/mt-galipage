@@ -124,7 +124,8 @@ Route::get('/order', [PedidoController::class, 'makeOrder'])->name('makeOrder')-
 Route::get('/pedidos/pedido/{id?}', [PedidoController::class, 'mostrarPedido'])->name('pedido.mostrarPedido')->middleware('auth');
 Route::get('/pedidos', [PedidoController::class, 'mostrarTodos'])->name('pedido.mostrarTodos')->middleware('auth');
 
-
+// guardar comentario
+Route::post('/guardar-comentario', [PedidoController::class, 'guardarComentario']);
 
 
 // ============================================================== 

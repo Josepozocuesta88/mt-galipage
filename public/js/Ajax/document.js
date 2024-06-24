@@ -8,7 +8,7 @@ $(document).ready(function ajaxDashboard() {
         { title: "#", data: "doccon" },
         { title: "Serie", data: "docser" },
         { title: "Ejercicio", data: "doceje" },
-        { title: "Número", className: "ser-eje-num text-end", data: "docnum" },
+        {  title: "Número", className: "ser-eje-num text-end", data: "docnum" },
         {
             title: "Fecha",
             data: "docfec",
@@ -43,6 +43,7 @@ $(document).ready(function ajaxDashboard() {
     ];
 
     if (doctip !== "Albaranes") {
+
         columnsConfig.push(
             {
                 title: "Pendiente De Pago",
@@ -79,7 +80,7 @@ $(document).ready(function ajaxDashboard() {
         title: "Descargar",
         data: "descarga",
         render: function (data, type, row) {
-            var html = "";
+
             if (data) {
                 var html =
                     '<a href="/documentos/download/' +
@@ -87,17 +88,16 @@ $(document).ready(function ajaxDashboard() {
                     '" class="btn btn-primary me-2"><i class="bi bi-download"></i></a>';
                 if (row.docfichero && row.docfichero.length === 1) {
                     html +=
-                    '<a href="/documentos/ver/' +
-                    encodeURIComponent(row.docfichero) +
-                    '" class="btn btn-primary" data-toggle="fullscreen" target="_blank"><i class="bi bi-eye-fill"></i></a>';
-                
-                } else {
-                    html = "No disponible";
+                        '<a href="' +
+                        urlDoc +
+                        "/images/files/" +
+                        row.docfichero +
+                        '" class="btn btn-primary" data-toggle="fullscreen"><i class="bi bi-eye-fill"></i></a>';
                 }
-            } else {
-                html = "No disponible";
+
+                return html;
             }
-            return html;
+            return "No disponible";
         },
     });
 

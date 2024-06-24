@@ -65,7 +65,7 @@
                                                         <th>Cantidad</th>
                                                         <th>Precio</th>
                                                         <th>Total</th>
-                                                        <th></th>
+                                                        <th>Eliminar</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -167,18 +167,16 @@
                                         <div class="mt-3">
                                             <label for="example-textarea" class="form-label">Añadir un comentario:</label>
                                             <textarea class="form-control" id="example-textarea" rows="3"
-                                                placeholder="Este campo es opcional, puedes escribir algún comentario si lo deseas.."></textarea>
+                                                placeholder="Este campo es opcional, puedes escribir algún comentario si lo deseas..">{{ session('comentario') }}</textarea>
                                         </div>
 
                                         <!-- action buttons-->
                                         <div class="row mt-4">
-                                            <div class="col-sm-6">
-                                                <a onclick="window.location.href='/articles/search?query=';"
-                                                    class="btn text-muted d-none d-sm-inline-block btn-link fw-semibold">
-                                                    <i class="mdi mdi-arrow-left"></i> Continuar comprando </a>
-                                            </div> <!-- end col -->
-                                            <div class="col-sm-6">
+                                            <div class="col-sm-12">
                                                 <div class="text-sm-end">
+                                                    <a onclick="window.location.href='/articles/search?query=';"
+                                                        class="btn btn-info">
+                                                        <i class="mdi mdi-arrow-left"></i> Continuar comprando </a>
                                                     <a href="{{ route('makeOrder') }}" class="btn btn-danger">
                                                         <i class="mdi mdi-cart-plus me-1"></i> Procesar el pedido </a>
                                                 </div>
@@ -200,9 +198,9 @@
                                                     </tr>
 
                                                     <!-- <tr>
-                                                                    <td>Descuento: </td>
-                                                                    <td class="ps-0">- X €</td>
-                                                                </tr> -->
+                                                                        <td>Descuento: </td>
+                                                                        <td class="ps-0">- X €</td>
+                                                                    </tr> -->
                                                     <tr>
                                                         <td>Gastos de envío :</td>
                                                         <td class="ps-0">
@@ -229,12 +227,12 @@
                                                                 €</td>
                                                         </tr>
                                                     @endif
-                                                        <tr>
-                                                            <th>Total:</th>
-                                                            <th class="ps-0">
-                                                                {{ \App\Services\FormatoNumeroService::convertirADecimal($total) }}
-                                                                €</th>
-                                                        </tr>
+                                                    <tr>
+                                                        <th>Total:</th>
+                                                        <th class="ps-0">
+                                                            {{ \App\Services\FormatoNumeroService::convertirADecimal($total) }}
+                                                            €</th>
+                                                    </tr>
                                                 </tbody>
                                             </table>
                                         </div>
@@ -250,6 +248,10 @@
                                         <input type="text" class="form-control"
                                             placeholder="Inserta el código de cupón" aria-label="Recipient's username">
                                         <button class="input-group-text btn-light" type="button">Aplicar</button>
+                                    </div>
+                                    <div class="d-grid gap-2 mt-3">
+                                        <a href="{{ route('all.points') }}" class="btn btn-warning text-body fw-bold">
+                                            <i class="bi bi-coin me-1"></i> Ver mis cupones </a>
                                     </div>
                                 </div> <!-- end col -->
                             </div>

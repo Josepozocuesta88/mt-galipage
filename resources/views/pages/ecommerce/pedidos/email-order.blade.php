@@ -95,6 +95,14 @@
     </table>
     <br>
 
+    @if(isset($comentario))
+        <div class="comentario">
+            <h4>Comentarios sobre el pedido:</h4>
+            <p>{{ $comentario }}</p>
+        </div>
+    @endif
+    <br>
+
     <div class="totals">
         <h4>Resumen del Pedido:</h4>
         <p>Subtotal: {{ $subtotal }} €</p>

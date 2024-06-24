@@ -20,4 +20,10 @@ class ClienteArticulo extends Model
         'clicencod',
         'artcod',
     ];
+
+    // public function getKey()
+    // {
+    //     return $this->attributes['clicod'] . ',' . $this->attributes['clicencod'] . ',' . $this->attributes['artcod'];
+    // }
+
 }

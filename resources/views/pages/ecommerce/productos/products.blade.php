@@ -36,13 +36,9 @@
                 <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
                     <a
                         href="{{ isset($image->ofcartcod) && $image->ofcartcod ? route('info', ['artcod' => $image->ofcartcod]) : 'javascript:void(0)' }}">
-                        <img src="{{ asset('images/ofertas/' . trim($image->ofcima)) }}" class="d-block w-100 fill"
-                            alt="banner publicitario">
+                        <img src="{{ asset('images/ofertas/' . trim($image->ofcima)) }}" class="d-block fill" 
+                            alt="banner publicitario" style="width: 100%; height: auto; aspect-ratio: 3/1;">
                     </a>
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>{{ $image->ofcartcod }}</h5>
-                        <!-- <p>Some representative placeholder content for the second slide.</p> -->
-                    </div>
                 </div>
                 @endforeach
             </div>

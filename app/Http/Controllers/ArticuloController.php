@@ -132,7 +132,6 @@ class ArticuloController extends Controller
                 ->search($keywords)
                 ->restrictions()
                 ->with(['imagenes', 'cajas']);
-             Log::info('Datos procesados', ['a' => $query->toSql(), 'b' => $query->getBindings()]);
 
         } else {
             $query = auth()->user()->accessibleArticles()->situacion('C')

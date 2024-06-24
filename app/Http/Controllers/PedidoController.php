@@ -39,7 +39,7 @@ class PedidoController extends Controller
     
         $this->sendOrderEmail($data, $user);
         Cart::where('cartusucod', $user->id)->delete();
-    
+        session()->forget('comentario');        
         return back()->with('success', '¡Su pedido se procesó correctamente!');
     }
 
@@ -81,13 +81,13 @@ class PedidoController extends Controller
 
 
 
-    
     private function createPedido($data, $user)
     {
         $pedido = new Pedido;
         $pedido->cliente_id = $user->id;
         $pedido->accclicod = $user->usuclicod;
         $pedido->acccencod = $user->usucencod;
+        $pedido->observaciones = $data['comentario'];
         $pedido->estado = 2;
         $pedido->fecha = date('Y-m-d H:i:s');
         $pedido->subtotal = $data['subtotal'];
@@ -121,7 +121,13 @@ class PedidoController extends Controller
         $email = $user->email;
         $email_empresa = config('mail.cc');
         $representante = $user ? Representante::where('rprcod', $user->usurprcod)->first() : "";
-        $email_copia_rpr = $representante->rprema;
+        if ($representante !== null && isset($representante->rprema)) {
+            $email_copia_rpr = $representante->rprema;
+        }else{
+            // para prueba (modificar)
+            $email_copia_rpr = "marialuisa@redesycomponentes.com";
+
+        }
         $emails_copia = array($email_empresa, $email_copia_rpr);
 
         try {
@@ -136,6 +142,16 @@ class PedidoController extends Controller
             return back()->with('error', 'Su pedido no se procesó correctamente, intentelo más tarde.');
         }
     }
+
+
+
+    public function guardarComentario(Request $request)
+    {
+        $request->session()->put('comentario', $request->comentario);
+
+        return response()->json(['message' => 'Comentario guardado en la sesión']);
+    }
+
 
     private function getItems($userId)
     {
@@ -203,6 +219,8 @@ class PedidoController extends Controller
 
         $subtotal = $itemDetails->sum('total');
         $data['subtotal'] = $subtotal;
+
+        $data['comentario'] = session('comentario');
 
         $shippingCost = 0.00;
         $total = $subtotal + $shippingCost;

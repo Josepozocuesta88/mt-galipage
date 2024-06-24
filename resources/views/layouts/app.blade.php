@@ -12,7 +12,7 @@
     <meta name="Distribution" content="Global">
     <meta name="Revisit-After" content="30 days">
     <meta name="Rating" content="General">
-    <title>Viandas Cádiz | Panel</title>
+    <title>{{ config('app.name', 'Laravel') }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Coderthemes" name="author" />
 
