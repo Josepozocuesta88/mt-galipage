@@ -31,11 +31,11 @@ return [
     |
     */
     'title' => 'Gabinete TIC | Business Intelligence',
-    
+
     'favicon' => 'images/web/logo.jpg',
 
     'hero_index' => 'images/web/hero-index.jpg',
-    
+
     'hero_gift' => 'images/web/gift.jpg',
 
     'logo' => 'images/web/logo.jpg',
@@ -72,7 +72,7 @@ return [
     // 'color' => '#3490dc',
     'points' => 'Puntos de Regalo',
     // --color-principal: {{ config('app.color') }};
-    
+
     /*
     |--------------------------------------------------------------------------
     | Application Environment
@@ -209,7 +209,7 @@ return [
     | this array to grant expanded functionality to your applications.
     |
     */
-    
+
     'providers' => ServiceProvider::defaultProviders()->merge([
         /*
          * Package Service Providers...
@@ -224,6 +224,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\OfertaServiceProvider::class,
+        Spatie\Html\HtmlServiceProvider::class,
     ])->toArray(),
 
     /*
@@ -239,6 +240,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
+        'Html' => Spatie\Html\Facades\Html::class,
     ])->toArray(),
 
 ];
